@@ -42,7 +42,7 @@ result: 	.asciiz "The sum is: "
   
   la $t2, ($v0)			#sets $t2 to contents of $v0
 
-  add $t1, $t1, $t2		#adds integers and stores result in
+  add $t1, $t1, $t2		#adds integers and stores result in register $t1
 
   la $a0, result		#print the result prompt
   li $v0, 4
