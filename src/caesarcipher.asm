@@ -1,15 +1,15 @@
 ########################################################################
 #
-#	      Program Name: caesarcipher
+#	  Program Name: caesarcipher
 # 
-#	      Description: Encrypt user input using Caesar Cipher 
-#       (ROT13) algorithm and display encrypted output
+#	  Description: Encrypt user input using Caesar Cipher 
+#         (ROT13) algorithm and display encrypted output
 #
-#	      Language: MIPS ASM
+#	  Language: MIPS ASM
 #
-#	      Date: 2/16/2023
+#	  Date: 2/16/2023
 # 
-#	      Author: Joshua Farias
+#	  Author: Joshua Farias
 #
 ########################################################################
 
@@ -18,7 +18,7 @@
 	fout:		  .asciiz	"EncryptedMessageOutput.txt"
 	fout2:		.asciiz "OriginalMessageInput.txt"
 	prompt: 	.asciiz "Please enter your message: "  # Ask the user to enter a string
-  output: 	.asciiz "Your Encrypted Message is: "  # Show the encrypted message based on ROT 13 encryption
+  	output: 	.asciiz "Your Encrypted Message is: "  # Show the encrypted message based on ROT 13 encryption
     	
   message:  	.space 256
     	
