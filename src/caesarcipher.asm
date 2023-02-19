@@ -15,12 +15,12 @@
 
 .data
 	
-	fout:		  .asciiz	"EncryptedMessageOutput.txt"
+	fout:		.asciiz	"EncryptedMessageOutput.txt"
 	fout2:		.asciiz "OriginalMessageInput.txt"
 	prompt: 	.asciiz "Please enter your message: "  # Ask the user to enter a string
   	output: 	.asciiz "Your Encrypted Message is: "  # Show the encrypted message based on ROT 13 encryption
     	
-  message:  	.space 256
+  	message:  	.space 256
     	
 .text
 	#Link commands
@@ -85,16 +85,16 @@ EncryptMessage:
 	# Loop over all characters
     		la $t1, ($a0)	    	#=>$t1:the current address that gets modified
 
-	s:  	lb $t0, ($t1)  		  # => $t0: the current value (char)
-    		beq $t0, $t2, out   # while $t1 != '\n'
+	s:  	lb $t0, ($t1)  		# => $t0: the current value (char)
+    		beq $t0, $t2, out       # while $t1 != '\n'
     		li $t3, 64
-    		bge $t3, $t0, w     # if $t0 <= 64: jump to w
+    		bge $t3, $t0, w         # if $t0 <= 64: jump to w
     		li $t3, 123
-    		bge $t0, $t3, w     # if $t0 >= 123: jump to w
+    		bge $t0, $t3, w         # if $t0 >= 123: jump to w
     		li $t3, 90
     		bge $t3, $t0, big 	# if $t0 <= 90: jump to big
     		li $t3, 96
-    		bge $t3, $t0, w     # if $t0 <= 96: jump to w
+    		bge $t3, $t0, w         # if $t0 <= 96: jump to w
     		j small
 	w:  	addi $t1, $t1, 1  	# $t1++
     		j s                	# /endwhile 
@@ -107,20 +107,20 @@ EncryptMessage:
     		j w
 
 	big:
-    		addi    $t0,$t0 -52   # -65 + 13
+    		addi    $t0,$t0 -52     # -65 + 13
     		rem     $t0, $t0, 26	# $t0 %= 26
     		addi    $t0, $t0,65
     		sb      $t0, ($t1)
     		j w
 
 	out:
-    		li      $v0, 4     	    # |
+    		li      $v0, 4     	# |
     		la      $a0, output    	# |
-    		syscall             	  # |=> Print string "output"
+    		syscall             	# |=> Print string "output"
 
-    		la      $v0, 4     	    # |
+    		la      $v0, 4     	# |
     		la      $a0, message    # |
-    		syscall             	  # |=> Print message
+    		syscall                 # |=> Print message
 	
 		jr $ra
 
